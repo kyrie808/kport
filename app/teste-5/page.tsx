@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useState, useEffect } from "react";
-import { motion, useMotionValue, useSpring, useMotionTemplate, animate, useTransform } from "motion/react";
+import { motion, useMotionValue, useSpring, useMotionTemplate } from "motion/react";
 import { NavMenu } from "@/components/NavMenu";
 import { MethodologySection } from "@/components/MethodologySection";
 import { ResultsSection } from "@/components/ResultsSection";
@@ -41,150 +41,76 @@ const MagneticButton = ({ children, className }: { children: React.ReactNode; cl
   );
 };
 
-export default function Teste3Page() {
+export default function Teste5Page() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [isMobile, setIsMobile] = useState(false);
 
-  // --- LÓGICA MOBILE VS DESKTOP ---
-  // Desktop: cutPos representa a porcentagem X (esquerda/direita)
-  // Mobile: cutPos representa a porcentagem Y (cima/baixo)
-  const cutPos = useMotionValue(50);
-  
-  // Configuração dinâmica do spring para alternar entre "bouncy" (auto/snap) e "responsivo" (touch)
-  const [springConfig, setSpringConfig] = useState({ damping: 40, stiffness: 200, mass: 1 });
-  
-  // A CADEIA DE VALORES:
-  // 1. rawValue (cutPos - useMotionValue) recebe os valores brutos (0 a 100)
-  // 2. springValue (smoothCutPos - useSpring) interpola suavemente até o valor de cutPos usando a springConfig atual
-  // 3. clipPathMobile/Desktop (useMotionTemplate) constrói a string do CSS usando o valor interpolado
-  const smoothCutPos = useSpring(cutPos, springConfig);
+  // Motion values for the mask position and radii
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+  const radiusSolid = useMotionValue(0);
+  const radiusBlur = useMotionValue(0);
 
-  // Fade out da cortina quando está 100% aberta (cutPos próximo de 0) para não interferir nos toques
-  const curtainOpacity = useTransform(smoothCutPos, [0, 5], [0, 1]);
-
-  // Refs para controle de toque no Mobile
-  const touchStartY = useRef(0);
-  const touchStartPos = useRef(0);
-  const hasInteracted = useRef(false);
-
-  // Motion values for the organic waves (breathing effect)
-  const wave1 = useMotionValue(0);
-  const wave2 = useMotionValue(0);
-  const wave3 = useMotionValue(0);
-  const wave4 = useMotionValue(0);
-  const wave5 = useMotionValue(0);
+  // Spring physics for smooth movement
+  const springConfig = { damping: 40, stiffness: 300, mass: 0.5 };
+  const smoothX = useSpring(mouseX, springConfig);
+  const smoothY = useSpring(mouseY, springConfig);
+  const smoothSolid = useSpring(radiusSolid, springConfig);
+  const smoothBlur = useSpring(radiusBlur, springConfig);
 
   useEffect(() => {
-    // Start wave animations for the liquid edge
-    animate(wave1, [0, 2, -2, 0], { repeat: Infinity, duration: 3, ease: "easeInOut" });
-    animate(wave2, [0, -3, 3, 0], { repeat: Infinity, duration: 4, ease: "easeInOut" });
-    animate(wave3, [0, 4, -4, 0], { repeat: Infinity, duration: 5, ease: "easeInOut" });
-    animate(wave4, [0, -2, 2, 0], { repeat: Infinity, duration: 3.5, ease: "easeInOut" });
-    animate(wave5, [0, 3, -3, 0], { repeat: Infinity, duration: 4.5, ease: "easeInOut" });
-
-    const checkMobile = () => {
-      const mobile = window.innerWidth < 768;
-      setIsMobile(mobile);
-      if (mobile) {
-        cutPos.set(100); // Mobile starts 100% closed (curtain at the bottom)
-        setSpringConfig({ damping: 25, stiffness: 100, mass: 1 }); // Suave/bouncy para o auto-reveal
-      } else {
-        cutPos.set(50); // Desktop starts at 50% (curtain in the middle)
-        setSpringConfig({ damping: 40, stiffness: 200, mass: 1 }); // Padrão desktop
-      }
-    };
-
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
     checkMobile();
     window.addEventListener('resize', checkMobile);
     return () => window.removeEventListener('resize', checkMobile);
-  }, [cutPos, wave1, wave2, wave3, wave4, wave5]);
+  }, []);
 
-  // Mobile auto-reveal timer (3 segundos)
-  useEffect(() => {
-    if (isMobile) {
-      const timer = setTimeout(() => {
-        if (!hasInteracted.current) {
-          // Altera apenas o rawValue. O useSpring fará a transição suave com a config atual (damping 25)
-          cutPos.set(30); // Sobe para 30% (revelando 70% da tela), garantindo que o texto fique 100% legível
-        }
-      }, 3000);
-      return () => clearTimeout(timer);
-    }
-  }, [isMobile, cutPos]);
-
-  // --- HANDLERS DESKTOP ---
+  // --- HANDLERS ---
   const handleMouseMove = (e: React.MouseEvent) => {
     if (isMobile) return;
     const rect = containerRef.current?.getBoundingClientRect();
     if (rect) {
-      const x = e.clientX - rect.left;
-      const percentage = (x / rect.width) * 100;
-      cutPos.set(percentage);
+      mouseX.set(e.clientX - rect.left);
+      mouseY.set(e.clientY - rect.top);
+      radiusSolid.set(180);
+      radiusBlur.set(400);
     }
   };
 
-  // --- HANDLERS MOBILE ---
+  const handleMouseLeave = () => {
+    if (isMobile) return;
+    radiusSolid.set(0);
+    radiusBlur.set(0);
+  };
+
   const handleTouchStart = (e: React.TouchEvent) => {
     if (!isMobile) return;
-    hasInteracted.current = true;
-    
-    // Muda para spring responsivo/rápido durante o arraste para não ter delay
-    setSpringConfig({ damping: 40, stiffness: 300, mass: 1 });
-    
-    touchStartY.current = e.touches[0].clientY;
-    touchStartPos.current = cutPos.get();
+    const rect = containerRef.current?.getBoundingClientRect();
+    if (rect) {
+      mouseX.set(e.touches[0].clientX - rect.left);
+      mouseY.set(e.touches[0].clientY - rect.top);
+      radiusSolid.set(120);
+      radiusBlur.set(200);
+    }
   };
 
   const handleTouchMove = (e: React.TouchEvent) => {
     if (!isMobile) return;
-    const deltaY = e.touches[0].clientY - touchStartY.current;
-    const deltaPercentage = (deltaY / window.innerHeight) * 100;
-    let newPos = touchStartPos.current + deltaPercentage;
-    newPos = Math.max(0, Math.min(100, newPos)); // Clamp 0-100
-    cutPos.set(newPos);
+    const rect = containerRef.current?.getBoundingClientRect();
+    if (rect) {
+      mouseX.set(e.touches[0].clientX - rect.left);
+      mouseY.set(e.touches[0].clientY - rect.top);
+    }
   };
 
   const handleTouchEnd = () => {
     if (!isMobile) return;
-    
-    // Volta para spring suave/bouncy para o snap final
-    setSpringConfig({ damping: 25, stiffness: 100, mass: 1 });
-    
-    const currentPos = cutPos.get();
-    // Snap behavior:
-    // Se arrastar mais de 40% da tela para cima (pos < 60), snap para 0 (100% aberto)
-    // Se arrastar menos de 40% (pos >= 60), snap para 100 (fechado)
-    if (currentPos < 60) {
-      cutPos.set(0);
-    } else {
-      cutPos.set(100);
-    }
+    radiusSolid.set(0);
+    radiusBlur.set(0);
   };
 
-  // --- CLIP PATHS ---
-  // Desktop: Corte Vertical (esquerda/direita)
-  const clipPathDesktop = useMotionTemplate`polygon(
-    0% 0%, 
-    calc(${smoothCutPos}% + ${wave1}%) 0%, 
-    calc(${smoothCutPos}% + ${wave2}%) 20%, 
-    calc(${smoothCutPos}% + ${wave3}%) 40%, 
-    calc(${smoothCutPos}% + ${wave4}%) 60%, 
-    calc(${smoothCutPos}% + ${wave5}%) 80%, 
-    calc(${smoothCutPos}% + ${wave1}%) 100%, 
-    0% 100%
-  )`;
-
-  // Mobile: Corte Horizontal (cima/baixo)
-  const clipPathMobile = useMotionTemplate`polygon(
-    0% 0%, 
-    100% 0%, 
-    100% calc(${smoothCutPos}% + ${wave1}%), 
-    80% calc(${smoothCutPos}% + ${wave2}%), 
-    60% calc(${smoothCutPos}% + ${wave3}%), 
-    40% calc(${smoothCutPos}% + ${wave4}%), 
-    20% calc(${smoothCutPos}% + ${wave5}%), 
-    0% calc(${smoothCutPos}% + ${wave1}%)
-  )`;
+  // The inverted mask: reveals the dark layer where the mouse/touch is
+  const maskImage = useMotionTemplate`radial-gradient(circle at ${smoothX}px ${smoothY}px, black 0%, black ${smoothSolid}px, transparent ${smoothBlur}px)`;
 
   return (
     <main className="relative w-full bg-[#030303] text-white font-sans selection:bg-[#CCFF00] selection:text-black cursor-default">
@@ -193,9 +119,9 @@ export default function Teste3Page() {
 
       {/* --- Noise Overlay (Global) --- */}
       <div
-        className="fixed inset-0 z-50 opacity-20 mix-blend-screen pointer-events-none"
+        className="fixed inset-0 z-50 opacity-[0.05] mix-blend-overlay pointer-events-none"
         style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
+          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
           backgroundRepeat: "repeat",
           backgroundSize: "150px"
         }}
@@ -209,12 +135,13 @@ export default function Teste3Page() {
         ref={containerRef}
         className="relative h-screen w-full overflow-hidden"
         onMouseMove={handleMouseMove}
+        onMouseLeave={handleMouseLeave}
         onTouchStart={handleTouchStart}
         onTouchMove={handleTouchMove}
         onTouchEnd={handleTouchEnd}
       >
         {/* ========================================== */}
-        {/* CAMADA DE FUNDO: A "REALIDADE KYRIE"       */}
+        {/* BASE LAYER: VIBRANT "KYRIE" WORLD (z-0)    */}
         {/* ========================================== */}
         <div className="absolute inset-0 flex flex-col items-center justify-center z-0 bg-[#030303]">
           {/* --- Background Blobs --- */}
@@ -246,7 +173,6 @@ export default function Teste3Page() {
           </h1>
 
           {/* --- Satellites (Badges) --- */}
-          {/* Badge 1: Top Left */}
           <motion.div
             className="hidden md:block absolute top-[25%] left-[10%] md:left-[15%] z-30"
             animate={{ y: [-10, 10, -10] }}
@@ -257,7 +183,6 @@ export default function Teste3Page() {
             </div>
           </motion.div>
 
-          {/* Badge 2: Top Right */}
           <motion.div
             className="hidden md:block absolute top-[35%] right-[10%] md:right-[15%] z-30"
             animate={{ y: [10, -10, 10] }}
@@ -268,7 +193,6 @@ export default function Teste3Page() {
             </div>
           </motion.div>
 
-          {/* Badge 3: Bottom Right */}
           <motion.div
             className="hidden md:block absolute bottom-[35%] right-[15%] md:right-[20%] z-30"
             animate={{ y: [-15, 15, -15] }}
@@ -281,20 +205,32 @@ export default function Teste3Page() {
         </div>
 
         {/* ========================================== */}
-        {/* CAMADA FRONTAL: A "CORTINA LÍQUIDA"        */}
+        {/* DARK LAYER: "MARKETING TRADICIONAL" (z-10) */}
         {/* ========================================== */}
         <motion.div 
           className="absolute inset-0 z-10 bg-[#0a0a0a] flex flex-col items-center justify-center pointer-events-none"
           style={{
-            WebkitClipPath: isMobile ? clipPathMobile : clipPathDesktop,
-            clipPath: isMobile ? clipPathMobile : clipPathDesktop,
-            opacity: isMobile ? curtainOpacity : 1,
+            WebkitMaskImage: maskImage,
+            maskImage: maskImage,
           }}
         >
-          <h1 className="text-[15vw] md:text-[10vw] lg:text-[11vw] leading-[0.85] tracking-tighter font-black text-center text-neutral-700 uppercase flex flex-col">
+          <h1 className="relative z-20 text-[15vw] md:text-[10vw] lg:text-[11vw] leading-[0.85] tracking-tighter font-black text-center text-neutral-700 uppercase flex flex-col">
             <span>MARKETING</span>
             <span>TRADICIONAL</span>
           </h1>
+
+          {/* ZONA DE RISCO Badge (follows the mouse inside the mask) */}
+          <motion.div
+            className="absolute flex items-center justify-center px-3 py-1 rounded-full border border-red-500/30 bg-red-500/10 z-30"
+            style={{ 
+              left: smoothX, 
+              top: smoothY, 
+              x: "-50%", 
+              y: "-50%" 
+            }}
+          >
+            <span className="text-red-400 text-xs font-mono font-bold tracking-wider">⚠ ZONA DE RISCO</span>
+          </motion.div>
         </motion.div>
 
         {/* ========================================== */}
@@ -302,7 +238,7 @@ export default function Teste3Page() {
         {/* ========================================== */}
         <div className="absolute bottom-12 md:bottom-20 left-1/2 -translate-x-1/2 z-40 w-[90%] max-w-sm md:w-auto">
           <MagneticButton>
-            <button className="w-full group relative flex items-center justify-center gap-3 px-6 py-4 md:px-12 md:py-6 bg-[#CCFF00] text-black rounded-full font-bold text-lg md:text-xl tracking-tight shadow-[0_0_40px_rgba(204,255,0,0.4)] hover:shadow-[0_0_60px_rgba(204,255,0,0.6)] transition-all duration-300 overflow-hidden">
+            <button className="w-full group relative flex items-center justify-center gap-3 px-6 py-4 md:px-12 md:py-6 bg-[#CCFF00] text-black rounded-full font-bold text-lg md:text-xl tracking-tight shadow-[0_0_40px_rgba(204,255,0,0.4)] hover:shadow-[0_0_60px_rgba(204,255,0,0.6)] transition-all duration-300 overflow-hidden pointer-events-auto">
               <span className="relative z-10">Ativar Motor Kyrie</span>
               <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out rounded-full" />
             </button>

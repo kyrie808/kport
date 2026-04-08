@@ -5,6 +5,23 @@
   --color-foreground: #ffffff;
 }
 
+/* Esconder scrollbar para Chrome, Safari e Opera */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+/* Esconder scrollbar para IE, Edge e Firefox */
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+@layer base {
+  body {
+    background-color: #030303;
+    color: #ffffff;
+  }
+}
+
 @layer components {
   .all-unset {
     all: unset;
