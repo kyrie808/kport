@@ -32,8 +32,8 @@ export const MethodologySection = () => {
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-24 relative">
         
         {/* Left Column (Sticky) */}
-        <div className="lg:w-1/2 relative">
-          <div className="sticky top-40 flex flex-col gap-8">
+        <div className="lg:w-1/2 relative mb-8 lg:mb-0">
+          <div className="lg:sticky lg:top-40 flex flex-col gap-8">
             <h2 className="text-5xl md:text-6xl lg:text-7xl font-black tracking-tighter uppercase leading-[0.9]">
               A ENGENHARIA <br /> DO LUCRO.
             </h2>

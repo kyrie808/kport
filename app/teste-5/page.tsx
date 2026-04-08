@@ -8,38 +8,8 @@ import { ResultsSection } from "@/components/ResultsSection";
 import { TechSection } from "@/components/TechSection";
 import { FinalCTA } from "@/components/FinalCTA";
 
-// --- Magnetic Button Component ---
-const MagneticButton = ({ children, className }: { children: React.ReactNode; className?: string }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-
-  const handleMouse = (e: React.MouseEvent<HTMLDivElement>) => {
-    const { clientX, clientY } = e;
-    const { height, width, left, top } = ref.current!.getBoundingClientRect();
-    const middleX = clientX - (left + width / 2);
-    const middleY = clientY - (top + height / 2);
-    setPosition({ x: middleX * 0.3, y: middleY * 0.3 });
-  };
-
-  const reset = () => {
-    setPosition({ x: 0, y: 0 });
-  };
-
-  const { x, y } = position;
-
-  return (
-    <motion.div
-      ref={ref}
-      onMouseMove={handleMouse}
-      onMouseLeave={reset}
-      animate={{ x, y }}
-      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-};
+import { MagneticButton } from "@/components/MagneticButton";
+import { NoiseOverlay } from "@/components/NoiseOverlay";
 
 export default function Teste5Page() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -118,14 +88,7 @@ export default function Teste5Page() {
       <NavMenu />
 
       {/* --- Noise Overlay (Global) --- */}
-      <div
-        className="fixed inset-0 z-50 opacity-[0.05] mix-blend-overlay pointer-events-none"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-          backgroundRepeat: "repeat",
-          backgroundSize: "150px"
-        }}
-      />
+      <NoiseOverlay />
 
       {/* ========================================== */}
       {/* HERO SECTION                               */}
@@ -133,7 +96,7 @@ export default function Teste5Page() {
       <section 
         id="motor"
         ref={containerRef}
-        className="relative h-screen w-full overflow-hidden"
+        className="relative h-screen w-full overflow-hidden touch-action-none"
         onMouseMove={handleMouseMove}
         onMouseLeave={handleMouseLeave}
         onTouchStart={handleTouchStart}
@@ -153,7 +116,7 @@ export default function Teste5Page() {
                 scale: [1, 1.4, 0.9, 1],
               }}
               transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-              className="absolute top-[10%] left-[20%] w-[40vw] h-[40vw] rounded-full bg-[#8A2BE2] opacity-80 blur-[90px]"
+              className="absolute top-[10%] left-[20%] w-[40vw] h-[40vw] rounded-full bg-[#8A2BE2] opacity-80 blur-[50px] md:blur-[90px]"
             />
             <motion.div
               animate={{
@@ -162,7 +125,7 @@ export default function Teste5Page() {
                 scale: [1.4, 1, 1.4, 1.4],
               }}
               transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-              className="absolute bottom-[10%] right-[10%] w-[50vw] h-[50vw] rounded-full bg-[#CCFF00] opacity-80 blur-[90px]"
+              className="absolute bottom-[10%] right-[10%] w-[50vw] h-[50vw] rounded-full bg-[#CCFF00] opacity-80 blur-[50px] md:blur-[90px]"
             />
           </div>
 

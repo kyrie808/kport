@@ -5,6 +5,19 @@
   --color-foreground: #ffffff;
 }
 
+@layer utilities {
+  .touch-action-none {
+    touch-action: none;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+}
+
 /* Esconder scrollbar para Chrome, Safari e Opera */
 .no-scrollbar::-webkit-scrollbar {
   display: none;

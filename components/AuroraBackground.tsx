@@ -28,7 +28,7 @@ export const AuroraBackground = ({
             repeat: Infinity,
             ease: "linear",
           }}
-          className="absolute -top-[20%] -left-[10%] w-[50vw] h-[50vw] rounded-full bg-[#8A2BE2] opacity-30 blur-[120px]"
+          className="absolute -top-[20%] -left-[10%] w-[50vw] h-[50vw] rounded-full bg-[#8A2BE2] opacity-30 blur-[60px] md:blur-[120px]"
         />
         <motion.div
           animate={{
@@ -41,7 +41,7 @@ export const AuroraBackground = ({
             repeat: Infinity,
             ease: "linear",
           }}
-          className="absolute top-[20%] -right-[10%] w-[40vw] h-[40vw] rounded-full bg-[#CCFF00] opacity-20 blur-[100px]"
+          className="absolute top-[20%] -right-[10%] w-[40vw] h-[40vw] rounded-full bg-[#CCFF00] opacity-20 blur-[50px] md:blur-[100px]"
         />
         <motion.div
           animate={{
@@ -54,7 +54,7 @@ export const AuroraBackground = ({
             repeat: Infinity,
             ease: "linear",
           }}
-          className="absolute -bottom-[20%] left-[20%] w-[60vw] h-[60vw] rounded-full bg-[#8A2BE2] opacity-20 blur-[150px]"
+          className="absolute -bottom-[20%] left-[20%] w-[60vw] h-[60vw] rounded-full bg-[#8A2BE2] opacity-20 blur-[70px] md:blur-[150px]"
         />
       </div>
 

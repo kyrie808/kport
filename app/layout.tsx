@@ -10,6 +10,12 @@ const inter = Inter({
 export const metadata: Metadata = {
   title: 'Kyrie | Ecossistema de Vendas',
   description: 'Construímos o motor de vendas e a infraestrutura tecnológica para o seu negócio escalar sem caos.',
+  openGraph: {
+    title: 'Kyrie | Ecossistema de Vendas',
+    description: 'Motor de vendas com engenharia de dados e automação por IA.',
+    type: 'website',
+    locale: 'pt_BR',
+  },
 };
 
 export default function RootLayout({children}: {children: React.ReactNode}) {

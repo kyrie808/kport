@@ -15,7 +15,7 @@ export const NavMenu = () => {
           03_CASES
         </a>
       </div>
-      <GlassButton variant="primary" className="w-full md:w-auto">
+      <GlassButton variant="primary" className="w-full md:w-auto" aria-label="Entrar em contato com a Kyrie">
         INICIAR_SISTEMA
       </GlassButton>
     </nav>

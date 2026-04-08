@@ -9,7 +9,7 @@ export const FinalCTA = () => {
           QUERO ESCALAR <br /> MINHA OPERAÇÃO
         </h2>
         
-        <button className="mt-16 bg-[#030303] text-white rounded-full px-10 py-6 text-xl md:text-2xl font-bold tracking-tight hover:scale-105 transition-transform duration-300 shadow-2xl">
+        <button aria-label="Iniciar projeto de escala" className="mt-16 bg-[#030303] text-white rounded-full px-10 py-6 text-xl md:text-2xl font-bold tracking-tight hover:scale-105 transition-transform duration-300 shadow-2xl">
           INICIAR DEPLOY AGORA
         </button>
       </section>

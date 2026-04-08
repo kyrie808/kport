@@ -8,38 +8,8 @@ import { ResultsSection } from "@/components/ResultsSection";
 import { TechSection } from "@/components/TechSection";
 import { FinalCTA } from "@/components/FinalCTA";
 
-// --- Magnetic Button Component ---
-const MagneticButton = ({ children, className }: { children: React.ReactNode; className?: string }) => {
-  const ref = useRef<HTMLDivElement>(null);
-  const [position, setPosition] = useState({ x: 0, y: 0 });
-
-  const handleMouse = (e: React.MouseEvent<HTMLDivElement>) => {
-    const { clientX, clientY } = e;
-    const { height, width, left, top } = ref.current!.getBoundingClientRect();
-    const middleX = clientX - (left + width / 2);
-    const middleY = clientY - (top + height / 2);
-    setPosition({ x: middleX * 0.3, y: middleY * 0.3 });
-  };
-
-  const reset = () => {
-    setPosition({ x: 0, y: 0 });
-  };
-
-  const { x, y } = position;
-
-  return (
-    <motion.div
-      ref={ref}
-      onMouseMove={handleMouse}
-      onMouseLeave={reset}
-      animate={{ x, y }}
-      transition={{ type: "spring", stiffness: 150, damping: 15, mass: 0.1 }}
-      className={className}
-    >
-      {children}
-    </motion.div>
-  );
-};
+import { MagneticButton } from "@/components/MagneticButton";
+import { NoiseOverlay } from "@/components/NoiseOverlay";
 
 // --- Glitch Lines Component (Phase 1) ---
 const GlitchLines = () => {
@@ -153,14 +123,7 @@ export default function Teste4Page() {
 
       {/* --- Noise Overlay (Global) --- */}
       {/* Mantido o noise premium hiper-fino conforme ajuste anterior */}
-      <div
-        className="fixed inset-0 z-50 opacity-20 mix-blend-screen pointer-events-none"
-        style={{
-          backgroundImage: `url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='3.5' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E")`,
-          backgroundRepeat: "repeat",
-          backgroundSize: "150px"
-        }}
-      />
+      <NoiseOverlay />
 
       {/* ========================================== */}
       {/* HERO SECTION                               */}
