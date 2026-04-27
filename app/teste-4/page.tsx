@@ -25,7 +25,7 @@ const GlitchLines = () => {
       {lines.map((line, i) => (
         <motion.div
           key={i}
-          className="absolute w-full bg-[#CCFF00]"
+          className="absolute w-full bg-accent"
           style={{ top: line.top, height: line.height }}
           animate={{ opacity: [0, 0.8, 0, 0.8, 0] }}
           transition={{ duration: 0.15, repeat: Infinity, repeatType: "mirror", delay: line.delay }}
@@ -85,7 +85,7 @@ const ScrambleLine = ({ oldText, newText, isMorphing, delayOffset }: { oldText: 
         <span 
           key={i} 
           className={item.resolved && item.char !== ' ' 
-            ? "text-[#CCFF00] drop-shadow-[0_0_20px_rgba(204,255,0,0.8)] transition-colors duration-300" 
+            ? "text-accent drop-shadow-[0_0_20px_rgba(204,255,0,0.8)] transition-colors duration-300" 
             : "text-neutral-700"}
           style={{ whiteSpace: 'pre' }}
         >
@@ -117,7 +117,7 @@ export default function Teste4Page() {
   }, []);
 
   return (
-    <main className="relative w-full bg-[#030303] text-white font-sans selection:bg-[#CCFF00] selection:text-black cursor-default">
+    <main className="relative w-full bg-bg text-white font-sans selection:bg-accent selection:text-black cursor-default">
       {/* --- Floating Nav Menu --- */}
       <NavMenu />
 
@@ -148,7 +148,7 @@ export default function Teste4Page() {
               scale: [1, 1.4, 0.9, 1],
             }}
             transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-            className="absolute top-[10%] left-[20%] w-[40vw] h-[40vw] rounded-full bg-[#8A2BE2] opacity-80 blur-[90px]"
+            className="absolute top-[10%] left-[20%] w-[40vw] h-[40vw] rounded-full bg-violet opacity-80 blur-[90px]"
           />
           <motion.div
             animate={{
@@ -157,7 +157,7 @@ export default function Teste4Page() {
               scale: [1.4, 1, 1.4, 1.4],
             }}
             transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-            className="absolute bottom-[10%] right-[10%] w-[50vw] h-[50vw] rounded-full bg-[#CCFF00] opacity-80 blur-[90px]"
+            className="absolute bottom-[10%] right-[10%] w-[50vw] h-[50vw] rounded-full bg-accent opacity-80 blur-[90px]"
           />
         </motion.div>
 
@@ -248,7 +248,7 @@ export default function Teste4Page() {
         {/* ========================================== */}
         <div className="absolute bottom-12 md:bottom-20 left-1/2 -translate-x-1/2 z-40 w-[90%] max-w-sm md:w-auto">
           <MagneticButton>
-            <button className="w-full group relative flex items-center justify-center gap-3 px-6 py-4 md:px-12 md:py-6 bg-[#CCFF00] text-black rounded-full font-bold text-lg md:text-xl tracking-tight shadow-[0_0_40px_rgba(204,255,0,0.4)] hover:shadow-[0_0_60px_rgba(204,255,0,0.6)] transition-all duration-300 overflow-hidden">
+            <button className="w-full group relative flex items-center justify-center gap-3 px-6 py-4 md:px-12 md:py-6 bg-accent text-black rounded-full font-bold text-lg md:text-xl tracking-tight shadow-[0_0_40px_rgba(204,255,0,0.4)] hover:shadow-[0_0_60px_rgba(204,255,0,0.6)] transition-all duration-300 overflow-hidden">
               <span className="relative z-10">Ativar Motor Kyrie</span>
               <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out rounded-full" />
             </button>

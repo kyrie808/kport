@@ -71,7 +71,7 @@ export default function Teste2Page() {
 
   return (
     <main 
-      className="relative min-h-screen w-full bg-[#030303] text-white overflow-hidden flex flex-col items-center justify-center font-sans selection:bg-[#CCFF00] selection:text-black"
+      className="relative min-h-screen w-full bg-bg text-white overflow-hidden flex flex-col items-center justify-center font-sans selection:bg-accent selection:text-black"
       onMouseMove={handleMouseMove}
     >
       {/* --- Background Blobs --- */}
@@ -83,7 +83,7 @@ export default function Teste2Page() {
             scale: [1, 1.1, 0.9, 1],
           }}
           transition={{ duration: 20, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute top-[10%] left-[20%] w-[40vw] h-[40vw] rounded-full bg-[#8A2BE2] opacity-30 blur-[120px]"
+          className="absolute top-[10%] left-[20%] w-[40vw] h-[40vw] rounded-full bg-violet opacity-30 blur-[120px]"
         />
         <motion.div
           animate={{
@@ -92,7 +92,7 @@ export default function Teste2Page() {
             scale: [1, 0.9, 1.2, 1],
           }}
           transition={{ duration: 25, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-[10%] right-[10%] w-[50vw] h-[50vw] rounded-full bg-[#CCFF00] opacity-20 blur-[120px]"
+          className="absolute bottom-[10%] right-[10%] w-[50vw] h-[50vw] rounded-full bg-accent opacity-20 blur-[120px]"
         />
       </div>
 
@@ -125,7 +125,7 @@ export default function Teste2Page() {
               initial={{ opacity: 0, y: 50 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 1, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-              className="block text-[#CCFF00] drop-shadow-[0_0_30px_rgba(204,255,0,0.4)]"
+              className="block text-accent drop-shadow-[0_0_30px_rgba(204,255,0,0.4)]"
             >
               DE VENDAS
             </motion.span>
@@ -191,7 +191,7 @@ export default function Teste2Page() {
           className="absolute bottom-12 md:bottom-20 z-40"
         >
           <MagneticButton>
-            <button className="group relative flex items-center justify-center gap-3 px-8 py-5 md:px-12 md:py-6 bg-[#CCFF00] text-black rounded-full font-bold text-lg md:text-xl tracking-tight shadow-[0_0_40px_rgba(204,255,0,0.4)] hover:shadow-[0_0_60px_rgba(204,255,0,0.6)] transition-all duration-300 overflow-hidden">
+            <button className="group relative flex items-center justify-center gap-3 px-8 py-5 md:px-12 md:py-6 bg-accent text-black rounded-full font-bold text-lg md:text-xl tracking-tight shadow-[0_0_40px_rgba(204,255,0,0.4)] hover:shadow-[0_0_60px_rgba(204,255,0,0.6)] transition-all duration-300 overflow-hidden">
               <span className="relative z-10">Iniciar Consultoria de Escala</span>
               <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out rounded-full" />
             </button>

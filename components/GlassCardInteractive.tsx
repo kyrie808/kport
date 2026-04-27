@@ -32,19 +32,19 @@ export const GlassCardInteractive = () => {
           {/* Metric 1 */}
           <div className="flex items-center justify-between bg-black/20 border border-white/5 rounded-2xl px-5 py-4 shadow-inner">
             <span className="text-xs font-semibold text-gray-400 uppercase tracking-widest">Demanda Gerada</span>
-            <span className="text-lg font-mono text-[#CCFF00] drop-shadow-[0_0_8px_rgba(204,255,0,0.4)]">+420%</span>
+            <span className="text-lg font-mono text-accent drop-shadow-[0_0_8px_rgba(204,255,0,0.4)]">+420%</span>
           </div>
           
           {/* Metric 2 */}
           <div className="flex items-center justify-between bg-black/20 border border-white/5 rounded-2xl px-5 py-4 shadow-inner">
             <span className="text-xs font-semibold text-gray-400 uppercase tracking-widest">Eficiência Operacional</span>
-            <span className="text-lg font-mono text-[#CCFF00] drop-shadow-[0_0_8px_rgba(204,255,0,0.4)]">99%</span>
+            <span className="text-lg font-mono text-accent drop-shadow-[0_0_8px_rgba(204,255,0,0.4)]">99%</span>
           </div>
           
           {/* Metric 3 */}
           <div className="flex items-center justify-between bg-black/20 border border-white/5 rounded-2xl px-5 py-4 shadow-inner">
             <span className="text-xs font-semibold text-gray-400 uppercase tracking-widest">Retorno (ROI)</span>
-            <span className="text-lg font-mono text-[#CCFF00] drop-shadow-[0_0_8px_rgba(204,255,0,0.4)]">12.4x</span>
+            <span className="text-lg font-mono text-accent drop-shadow-[0_0_8px_rgba(204,255,0,0.4)]">12.4x</span>
           </div>
         </div>
 
@@ -52,7 +52,7 @@ export const GlassCardInteractive = () => {
           href="#especialista"
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
-          className="mt-2 w-full flex items-center justify-center bg-[#CCFF00] text-black font-semibold rounded-full px-6 py-4 text-sm shadow-[0_0_20px_rgba(204,255,0,0.3)] hover:shadow-[0_0_30px_rgba(204,255,0,0.6)] transition-shadow"
+          className="mt-2 w-full flex items-center justify-center bg-accent text-black font-semibold rounded-full px-6 py-4 text-sm shadow-[0_0_20px_rgba(204,255,0,0.3)] hover:shadow-[0_0_30px_rgba(204,255,0,0.6)] transition-shadow"
         >
           Falar com um Especialista
         </motion.a>

@@ -3,7 +3,7 @@ import { Zap, Bot, Crosshair, Activity } from "lucide-react";
 
 export const TechSection = () => {
   return (
-    <section className="relative w-full bg-[#030303] text-white py-24 md:py-40 px-6 md:px-12 lg:px-24 z-10">
+    <section className="relative w-full bg-bg text-white py-24 md:py-40 px-6 md:px-12 lg:px-24 z-10">
       <div className="max-w-7xl mx-auto flex flex-col gap-16">
         
         {/* Header */}
@@ -18,7 +18,7 @@ export const TechSection = () => {
           
           {/* Card 1: Large */}
           <div className="md:col-span-2 flex flex-col justify-between p-8 md:p-12 bg-white/5 backdrop-blur-xl border border-white/10 rounded-[32px] hover:bg-white/10 transition-colors group">
-            <Bot className="w-12 h-12 text-[#CCFF00] mb-6" />
+            <Bot className="w-12 h-12 text-accent mb-6" />
             <div>
               <h3 className="text-3xl font-bold tracking-tight mb-2">Automação com IA (Agentes)</h3>
               <p className="text-gray-400 text-lg">Sistemas autônomos que qualificam, nutrem e convertem leads 24/7 sem intervenção humana.</p>
@@ -27,7 +27,7 @@ export const TechSection = () => {
 
           {/* Card 2: Small */}
           <div className="flex flex-col justify-between p-8 md:p-12 bg-white/5 backdrop-blur-xl border border-white/10 rounded-[32px] hover:bg-white/10 transition-colors">
-            <Zap className="w-12 h-12 text-[#CCFF00] mb-6" />
+            <Zap className="w-12 h-12 text-accent mb-6" />
             <div>
               <h3 className="text-2xl font-bold tracking-tight mb-2">Latência Zero</h3>
               <p className="text-gray-400">Resposta imediata em cada ponto de contato.</p>
@@ -36,7 +36,7 @@ export const TechSection = () => {
 
           {/* Card 3: Small */}
           <div className="flex flex-col justify-between p-8 md:p-12 bg-white/5 backdrop-blur-xl border border-white/10 rounded-[32px] hover:bg-white/10 transition-colors">
-            <Crosshair className="w-12 h-12 text-[#CCFF00] mb-6" />
+            <Crosshair className="w-12 h-12 text-accent mb-6" />
             <div>
               <h3 className="text-2xl font-bold tracking-tight mb-2">Tracking Cirúrgico</h3>
               <p className="text-gray-400">Atribuição perfeita de cada conversão.</p>
@@ -45,7 +45,7 @@ export const TechSection = () => {
 
           {/* Card 4: Large */}
           <div className="md:col-span-2 flex flex-col justify-between p-8 md:p-12 bg-white/5 backdrop-blur-xl border border-white/10 rounded-[32px] hover:bg-white/10 transition-colors">
-            <Activity className="w-12 h-12 text-[#CCFF00] mb-6" />
+            <Activity className="w-12 h-12 text-accent mb-6" />
             <div>
               <h3 className="text-3xl font-bold tracking-tight mb-2">Dashboard de Elite</h3>
               <p className="text-gray-400 text-lg">Visibilidade total da operação em tempo real. Decisões baseadas em dados, não em intuição.</p>

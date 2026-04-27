@@ -157,7 +157,7 @@ export default function Teste3Page() {
   )`;
 
   return (
-    <main className="relative w-full bg-[#030303] text-white font-sans selection:bg-[#CCFF00] selection:text-black cursor-default">
+    <main className="relative w-full bg-bg text-white font-sans selection:bg-accent selection:text-black cursor-default">
       {/* --- Floating Nav Menu --- */}
       <NavMenu />
 
@@ -179,7 +179,7 @@ export default function Teste3Page() {
         {/* ========================================== */}
         {/* CAMADA DE FUNDO: A "REALIDADE KYRIE"       */}
         {/* ========================================== */}
-        <div className="absolute inset-0 flex flex-col items-center justify-center z-0 bg-[#030303]">
+        <div className="absolute inset-0 flex flex-col items-center justify-center z-0 bg-bg">
           {/* --- Background Blobs --- */}
           <div className="absolute inset-0 overflow-hidden pointer-events-none">
             <motion.div
@@ -189,7 +189,7 @@ export default function Teste3Page() {
                 scale: [1, 1.4, 0.9, 1],
               }}
               transition={{ duration: 8, repeat: Infinity, ease: "linear" }}
-              className="absolute top-[10%] left-[20%] w-[40vw] h-[40vw] rounded-full bg-[#8A2BE2] opacity-80 blur-[50px] md:blur-[90px]"
+              className="absolute top-[10%] left-[20%] w-[40vw] h-[40vw] rounded-full bg-violet opacity-80 blur-[50px] md:blur-[90px]"
             />
             <motion.div
               animate={{
@@ -198,13 +198,13 @@ export default function Teste3Page() {
                 scale: [1.4, 1, 1.4, 1.4],
               }}
               transition={{ duration: 10, repeat: Infinity, ease: "linear" }}
-              className="absolute bottom-[10%] right-[10%] w-[50vw] h-[50vw] rounded-full bg-[#CCFF00] opacity-80 blur-[50px] md:blur-[90px]"
+              className="absolute bottom-[10%] right-[10%] w-[50vw] h-[50vw] rounded-full bg-accent opacity-80 blur-[50px] md:blur-[90px]"
             />
           </div>
 
           {/* --- Typography --- */}
           <h1 className="relative z-20 text-[15vw] md:text-[10vw] lg:text-[11vw] leading-[0.85] tracking-tighter font-black text-center uppercase flex flex-col">
-            <span className="text-[#CCFF00] drop-shadow-[0_0_30px_rgba(204,255,0,0.4)]">ECOSSISTEMA</span>
+            <span className="text-accent drop-shadow-[0_0_30px_rgba(204,255,0,0.4)]">ECOSSISTEMA</span>
             <span className="text-white">DE VENDAS</span>
           </h1>
 
@@ -247,7 +247,7 @@ export default function Teste3Page() {
         {/* CAMADA FRONTAL: A "CORTINA LÍQUIDA"        */}
         {/* ========================================== */}
         <motion.div 
-          className="absolute inset-0 z-10 bg-[#0a0a0a] flex flex-col items-center justify-center pointer-events-none"
+          className="absolute inset-0 z-10 bg-curtain flex flex-col items-center justify-center pointer-events-none"
           style={{
             WebkitClipPath: isMobile ? clipPathMobile : clipPathDesktop,
             clipPath: isMobile ? clipPathMobile : clipPathDesktop,
@@ -265,7 +265,7 @@ export default function Teste3Page() {
         {/* ========================================== */}
         <div className="absolute bottom-12 md:bottom-20 left-1/2 -translate-x-1/2 z-40 w-[90%] max-w-sm md:w-auto">
           <MagneticButton>
-            <button className="w-full group relative flex items-center justify-center gap-3 px-6 py-4 md:px-12 md:py-6 bg-[#CCFF00] text-black rounded-full font-bold text-lg md:text-xl tracking-tight shadow-[0_0_40px_rgba(204,255,0,0.4)] hover:shadow-[0_0_60px_rgba(204,255,0,0.6)] transition-all duration-300 overflow-hidden">
+            <button className="w-full group relative flex items-center justify-center gap-3 px-6 py-4 md:px-12 md:py-6 bg-accent text-black rounded-full font-bold text-lg md:text-xl tracking-tight shadow-[0_0_40px_rgba(204,255,0,0.4)] hover:shadow-[0_0_60px_rgba(204,255,0,0.6)] transition-all duration-300 overflow-hidden">
               <span className="relative z-10">Ativar Motor Kyrie</span>
               <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-out rounded-full" />
             </button>

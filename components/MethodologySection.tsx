@@ -28,7 +28,7 @@ const cards = [
 
 export const MethodologySection = () => {
   return (
-    <section id="sistema" className="relative w-full bg-[#030303] text-white py-24 md:py-40 px-6 md:px-12 lg:px-24 z-10">
+    <section id="sistema" className="relative w-full bg-bg text-white py-24 md:py-40 px-6 md:px-12 lg:px-24 z-10">
       <div className="max-w-7xl mx-auto flex flex-col lg:flex-row gap-16 lg:gap-24 relative">
         
         {/* Left Column (Sticky) */}
@@ -57,7 +57,7 @@ export const MethodologySection = () => {
               viewport={{ once: true, margin: "-100px" }}
               transition={{ duration: 0.6, ease: "easeOut" }}
             >
-              <div className="text-[#CCFF00] font-mono text-xl font-bold tracking-widest">
+              <div className="text-accent font-mono text-xl font-bold tracking-widest">
                 [{card.id}]
               </div>
               <h3 className="text-3xl md:text-4xl font-bold tracking-tight uppercase">
