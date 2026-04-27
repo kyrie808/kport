@@ -7,7 +7,7 @@ import { FinalCTA } from "@/components/FinalCTA";
 
 export default function Home() {
   return (
-    <main className="relative w-full bg-[#030303] text-white font-sans selection:bg-[#CCFF00] selection:text-black cursor-default">
+    <main className="relative w-full bg-bg text-white font-sans selection:bg-accent selection:text-black cursor-default">
       <NavMenu />
       <HeroSection />
       <MethodologySection />

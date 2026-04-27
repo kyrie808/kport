@@ -42,7 +42,7 @@ export const TextGenerateEffect = ({
               key={word + idx}
               className={cn(
                 "opacity-0 inline-block",
-                isHighlight ? "text-[#CCFF00] drop-shadow-[0_0_15px_rgba(204,255,0,0.3)]" : "text-white"
+                isHighlight ? "text-accent drop-shadow-[0_0_15px_rgba(204,255,0,0.3)]" : "text-white"
               )}
               style={{
                 filter: filter ? "blur(10px)" : "none",

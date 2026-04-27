@@ -2,7 +2,7 @@ import React from "react";
 
 export const ResultsSection = () => {
   return (
-    <section id="cases" className="relative w-full bg-[#030303] text-white py-24 md:py-40 px-6 md:px-12 lg:px-24 z-10">
+    <section id="cases" className="relative w-full bg-bg text-white py-24 md:py-40 px-6 md:px-12 lg:px-24 z-10">
       <div className="max-w-7xl mx-auto flex flex-col gap-24">
         
         {/* Header */}
@@ -23,13 +23,13 @@ export const ResultsSection = () => {
             { value: "120k", label: "FATURAMENTO" },
           ].map((metric, i) => (
             <div key={i} className="flex flex-col items-center text-center gap-4 relative pb-8">
-              <span className="text-7xl md:text-8xl font-black text-[#CCFF00] tracking-tighter">
+              <span className="text-7xl md:text-8xl font-black text-accent tracking-tighter">
                 {metric.value}
               </span>
               <span className="text-gray-400 font-mono tracking-widest uppercase">
                 {metric.label}
               </span>
-              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-[2px] bg-[#CCFF00] shadow-[0_0_10px_#CCFF00]" />
+              <div className="absolute bottom-0 left-1/2 -translate-x-1/2 w-24 h-[2px] bg-accent shadow-[0_0_10px_#CCFF00]" />
             </div>
           ))}
         </div>
@@ -48,9 +48,9 @@ export const ResultsSection = () => {
               <p className="text-xl md:text-2xl font-light italic text-gray-300 leading-relaxed">
                 &quot;{testimonial.quote}&quot;
               </p>
-              <div className="mt-auto inline-flex items-center gap-2 px-4 py-2 rounded-full bg-[#CCFF00]/10 border border-[#CCFF00]/30 w-fit">
-                <div className="w-2 h-2 rounded-full bg-[#CCFF00] animate-pulse" />
-                <span className="text-[#CCFF00] text-xs font-mono font-bold tracking-widest uppercase">
+              <div className="mt-auto inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/10 border border-accent/30 w-fit">
+                <div className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+                <span className="text-accent text-xs font-mono font-bold tracking-widest uppercase">
                   STATUS: OPERAÇÃO ESCALADA
                 </span>
               </div>

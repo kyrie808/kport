@@ -33,8 +33,8 @@
 
 @layer base {
   body {
-    background-color: #030303;
-    color: #ffffff;
+    background-color: var(--color-bg);
+    color: var(--color-fg);
   }
 }
 
