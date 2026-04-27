@@ -1,8 +1,11 @@
 @import "tailwindcss";
 
 @theme {
-  --color-background: #0a0a0a;
-  --color-foreground: #ffffff;
+  --color-bg: #030303;
+  --color-curtain: #0a0a0a;
+  --color-accent: #CCFF00;
+  --color-violet: #8A2BE2;
+  --color-fg: #ffffff;
 }
 
 @layer utilities {
